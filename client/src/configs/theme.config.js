@@ -7,7 +7,7 @@ export const themeModes = {
   light: "light",
 };
 
-const themeConfig = {
+const themeConfigs = {
   //根據傳入的 mode 參數返回相應的主題配置。
   custom: ({ mode }) => {
     const customPalette =
@@ -22,7 +22,7 @@ const themeConfig = {
               contrastText: "#fffff",
             },
             background: {
-              default: "#00000",
+              default: "#000000",
               paper: "#131313",
             },
           }
@@ -53,4 +53,4 @@ const themeConfig = {
   },
 };
 
-export default themeConfig;
+export default themeConfigs;

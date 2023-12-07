@@ -1,4 +1,4 @@
-import { ConfigureStore, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./features/userSlice.js";
 import themeModeSlice from "./features/themeModeSlice.js";
 import authModalSlice from "./features/authModalSlice.js";
