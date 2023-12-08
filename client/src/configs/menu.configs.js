@@ -21,7 +21,7 @@ const main = [
   },
   {
     display: "tv series",
-    path: "/tv series",
+    path: "/tv",
     icon: <LiveTvOutlinedIcon />,
     state: "homtve",
   },
@@ -54,6 +54,6 @@ const user = [
   },
 ];
 
-const menuConfigs = { menu, user };
+const menuConfigs = { main, user };
 
 export default menuConfigs;
