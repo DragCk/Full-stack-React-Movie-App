@@ -2,7 +2,7 @@ import userModel from "../models/user.model.js";
 import jsonwebtoken from "jsonwebtoken";
 import responseHandler from "../handlers/response.handler.js";
 
-const singUp = async (req, res) => {
+const signUp = async (req, res) => {
   try {
     const { username, password, displayName } = req.body;
 
@@ -16,7 +16,7 @@ const singUp = async (req, res) => {
     //如果使用者名稱唯一，創建一個新的 userModel 實例。
     const user = new userModel();
 
-    user.displayname = displayName;
+    user.displayName = displayName;
     user.username = username;
     //使用 userSchema.method 中的 setPassword 加密密碼。
     user.setPassword(password);
@@ -42,7 +42,7 @@ const singUp = async (req, res) => {
   }
 };
 
-const singIn = async (req, res) => {
+const signIn = async (req, res) => {
   try {
     const { username, password } = req.body;
 
@@ -118,8 +118,8 @@ const getInfo = async (req, res) => {
 };
 
 export default {
-  singIn,
-  singUp,
+  signIn,
+  signUp,
   getInfo,
   updatePassword,
 };

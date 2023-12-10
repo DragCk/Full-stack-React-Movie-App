@@ -10,7 +10,6 @@ import {
   Stack,
   Toolbar,
   useScrollTrigger,
-  userScrollTrigger,
 } from "@mui/material";
 import { cloneElement, useState } from "react";
 import { Link } from "react-router-dom";
@@ -110,6 +109,7 @@ const Topbar = () => {
                   {item.display}
                 </Button>
               ))}
+
               <IconButton sx={{ color: "inherit" }} onClick={onSwitchTheme}>
                 {themeMode === themeModes.dark && <DarkModeOutLinedIcon />}
                 {themeMode === themeModes.light && <WbSunnyOutLinedIcon />}

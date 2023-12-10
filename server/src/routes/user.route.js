@@ -10,7 +10,7 @@ import { Error } from "mongoose";
 const router = express.Router();
 
 router.post(
-  "/singup",
+  "/signup",
 
   // 使用 express-validator 定義一些輸入參數的驗證規則
   body("username")
@@ -39,7 +39,7 @@ router.post(
     .isLength({ min: 8 })
     .withMessage("Confirm password must be the same")
     .custom((value, { req }) => {
-      if (value === req.body.password)
+      if (value !== req.body.password)
         throw new Error("ConfirmPassword not match");
       return true;
     }),
@@ -51,11 +51,11 @@ router.post(
     .withMessage("displayName minimum 8 characters"),
 
   requestHandler.validate,
-  userController.singUp
+  userController.signUp
 );
 
 router.post(
-  "/singin",
+  "/signin",
   // 使用 express-validator 定義一些輸入參數的驗證規則
   body("username")
     .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。
@@ -70,7 +70,7 @@ router.post(
     .withMessage("Password minimum 8 characters"),
 
   requestHandler.validate,
-  userController.singIn
+  userController.signIn
 );
 
 router.put(

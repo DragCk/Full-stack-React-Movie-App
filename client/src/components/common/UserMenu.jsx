@@ -39,7 +39,7 @@ const UserMenu = () => {
             open={Boolean(anchorEl)}
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
-            PaperProps={{ sx: { passing: 0 } }}
+            PaperProps={{ sx: { padding: 0 } }}
           >
             {menuConfigs.user.map((item, index) => (
               <ListItemButton
@@ -69,7 +69,7 @@ const UserMenu = () => {
               <ListItemText
                 disableTypography
                 primary={
-                  <Typography textTransform="uppercase">sing out</Typography>
+                  <Typography textTransform="uppercase">sign out</Typography>
                 }
               />
             </ListItemButton>

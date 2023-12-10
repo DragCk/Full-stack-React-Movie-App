@@ -13,7 +13,7 @@ const publicClient = axios.create({
 });
 
 //設定 Request 攔截器，它在每次發送請求之前執行。
-publicClient.interceptors.request(async (config) => {
+publicClient.interceptors.request.use(async (config) => {
   return {
     ...config,
     headers: {

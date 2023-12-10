@@ -6,6 +6,8 @@ const validate = (req, res, next) => {
 
   //用於檢查是否有任何錯誤。如果有錯誤，表示請求未通過驗證。
   if (!errors.isEmpty()) return res.status(400).json(errors.array()[0].msg);
+
+  next();
 };
 
 export default { validate };

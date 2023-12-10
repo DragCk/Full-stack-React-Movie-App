@@ -3,16 +3,16 @@ import publicClient from "../client/public.client.js";
 
 //定義使用者相關的 API 端點
 const userEndpoints = {
-  singin: "user/singin",
-  singup: "user/singup",
+  signin: "user/signin",
+  signup: "user/signup",
   getInfo: "user/info",
   passwordUpdate: "user/update-password",
 };
 
 const userApi = {
-  singin: async ({ username, password }) => {
+  signin: async ({ username, password }) => {
     try {
-      const response = await publicClient.post(userEndpoints.singin, {
+      const response = await publicClient.post(userEndpoints.signin, {
         username,
         password,
       });
@@ -22,9 +22,9 @@ const userApi = {
       return { err };
     }
   },
-  singup: async ({ username, password, confirmPassword, displayName }) => {
+  signup: async ({ username, password, confirmPassword, displayName }) => {
     try {
-      const response = await publicClient.post(userEndpoints.singup, {
+      const response = await publicClient.post(userEndpoints.signup, {
         username,
         password,
         confirmPassword,
