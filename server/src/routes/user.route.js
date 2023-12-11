@@ -17,15 +17,7 @@ router.post(
     .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。
     .withMessage("username is required")
     .isLength({ min: 0 })
-    .withMessage("username minimum 8 characters")
-    .custom(async (value) => {
-      const user = await userModel.findOne({ username: value });
-      /*如果使用 throw new Error
-      通常會選擇同步的方式中止驗證
-      而如果使用 Promise.reject
-      可以支援異步操作。*/
-      if (user) return Promise.reject("username already exist");
-    }),
+    .withMessage("username minimum 8 characters"),
 
   body("password")
     .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。
@@ -37,12 +29,7 @@ router.post(
     .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。
     .withMessage("Confirm password is required")
     .isLength({ min: 8 })
-    .withMessage("Confirm password must be the same")
-    .custom((value, { req }) => {
-      if (value !== req.body.password)
-        throw new Error("ConfirmPassword not match");
-      return true;
-    }),
+    .withMessage("Confirm password must be the same"),
 
   body("displayName")
     .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。

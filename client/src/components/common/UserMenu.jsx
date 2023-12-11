@@ -1,11 +1,5 @@
 import LogoutOutLinedIcon from "@mui/icons-material/LogoutOutlined";
-import {
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Menu,
-  Typography,
-} from "@mui/material";
+import { ListItemButton, ListItemText, Menu, Typography } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -33,7 +27,7 @@ const UserMenu = () => {
             }}
             onClick={toggleMenu}
           >
-            {user.displayName}
+            {user.displayname}
           </Typography>
           <Menu
             open={Boolean(anchorEl)}
@@ -59,13 +53,10 @@ const UserMenu = () => {
                 />
               </ListItemButton>
             ))}
-            <ListItemButton
-              sx={{ borderRadius: "10px" }}
-              onClick={() => dispatch(setUser(null))}
-            >
-              <ListItemIcon>
+            <ListItemButton onClick={() => dispatch(setUser(null))}>
+              <ListItemButton>
                 <LogoutOutLinedIcon />
-              </ListItemIcon>
+              </ListItemButton>
               <ListItemText
                 disableTypography
                 primary={

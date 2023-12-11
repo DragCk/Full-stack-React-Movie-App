@@ -8,6 +8,8 @@ import MainLayout from "./components/Layout/MainLayout";
 import routes from "./routes/routes";
 import PageWrapper from "./components/common/PageWrapper";
 
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => {
   const { themeMode } = useSelector((state) => state.themeMode);
 
@@ -16,7 +18,7 @@ const App = () => {
       {/* config toastify 用於顯示通知*/}
       <ToastContainer
         position="bottom-left"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

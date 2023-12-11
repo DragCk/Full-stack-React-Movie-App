@@ -25,10 +25,10 @@ const getList = async (req, res) => {
 const getGenres = async (req, res) => {
   try {
     const { mediaType } = req.params;
-
+    console.log(`mediaType is ${mediaType}`);
     const response = await tmdbApi.mediaGenres({ mediaType });
 
-    responseHandler.ok(res, response);
+    return responseHandler.ok(res, response);
   } catch {
     responseHandler.error(res);
   }

@@ -5,7 +5,6 @@ import {
   ListItemIcon,
   ListItemText,
   Stack,
-  stack,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -78,7 +77,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
             </Typography>
             {menuConfigs.user.map((item, index) => (
               <ListItemButton
-                ket={index}
+                key={index}
                 sx={{
                   borderRadius: "10px",
                   marginY: 1,

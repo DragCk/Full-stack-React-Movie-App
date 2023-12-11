@@ -4,7 +4,7 @@ import responseHandler from "../handlers/response.handler.js";
 
 const signUp = async (req, res) => {
   try {
-    const { username, password, displayName } = req.body;
+    const { username, password, displayName, confirmPassword } = req.body;
 
     // 檢查是否有相同的使用者名稱。
     const checkUser = await userModel.findOne({ username });
@@ -13,10 +13,13 @@ const signUp = async (req, res) => {
     if (checkUser)
       return responseHandler.badrequest(res, "username already used");
 
+    if (confirmPassword !== password)
+      return responseHandler.badrequest(res, "Confirm password not match");
+
     //如果使用者名稱唯一，創建一個新的 userModel 實例。
     const user = new userModel();
 
-    user.displayName = displayName;
+    user.displayname = displayName;
     user.username = username;
     //使用 userSchema.method 中的 setPassword 加密密碼。
     user.setPassword(password);
