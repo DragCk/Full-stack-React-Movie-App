@@ -7,8 +7,8 @@ const tmdbApi = {
       tmdbEndpoints.mediaList({ mediaType, mediaCategory, page })
     ),
 
-  mediaDetail: async ({ mediaType, page }) =>
-    await axiosClient.get(tmdbEndpoints.mediaDetail({ mediaType, page })),
+  mediaDetail: async ({ mediaType, mediaId }) =>
+    await axiosClient.get(tmdbEndpoints.mediaDetail({ mediaType, mediaId })),
 
   mediaGenres: async ({ mediaType }) =>
     await axiosClient.get(tmdbEndpoints.mediaGenres({ mediaType })),
