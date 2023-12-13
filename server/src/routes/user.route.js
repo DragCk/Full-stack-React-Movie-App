@@ -111,8 +111,8 @@ router.post(
   body("mediaId")
     .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。
     .withMessage("mediaId is required")
-    .isLength({ min: 8 })
-    .withMessage("Media Id can not me empty"),
+    .isLength({ min: 1 })
+    .withMessage("Media Id can not be empty"),
 
   body("mediaTitle")
     .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。

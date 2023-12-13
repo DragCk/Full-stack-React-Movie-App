@@ -31,12 +31,12 @@ const removeFavorite = async (req, res) => {
 
     const favorite = await favoriteModel.findOne({
       user: req.user.id,
-      _Id: favoriteId,
+      mediaId: favoriteId,
     });
 
     if (!favorite) return responseHandler.notfound(res);
 
-    await favorite.remove();
+    await favorite.deleteOne();
 
     responseHandler.ok(res);
   } catch {
