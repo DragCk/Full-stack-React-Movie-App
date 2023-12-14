@@ -15,6 +15,7 @@ import dayjs from "dayjs";
 import { useSelector } from "react-redux";
 import Container from "./Container";
 import reviewApi from "../../api/modules/review.api";
+import TextAvatar from "./TextAvatar";
 
 const ReviewItem = ({ review, onRemoved }) => {
   const { user } = useSelector((state) => state.user);
@@ -25,10 +26,12 @@ const ReviewItem = ({ review, onRemoved }) => {
     if (onRequest) return;
     setOnRequest(true);
 
-    const { response, err } = await reviewApi.remove({ reviewId: review.id });
+    console.log({ review });
+
+    const { response, err } = await reviewApi.remove({ reviewId: review._id });
 
     if (err) toast.error(err.message);
-    if (response) onRemoved(review.id);
+    if (response) onRemoved(review._id);
   };
 
   return (
@@ -43,6 +46,7 @@ const ReviewItem = ({ review, onRemoved }) => {
     >
       <Stack direction="row" spacing={2}>
         {/* Avatar */}
+        <TextAvatar text={review.user.displayname} />
         {/* Avatar */}
         <Stack spacing={2} flexGrow={1}>
           <Stack spacing={1}>
@@ -50,7 +54,7 @@ const ReviewItem = ({ review, onRemoved }) => {
               {review.user.displayname}
             </Typography>
             <Typography variant="caption">
-              {dayjs(review.createAt.format("DD-MM-YYYY HH:mm:ss"))}
+              {dayjs(review.createAt).format("DD-MM-YYYY HH:mm:ss")}
             </Typography>
           </Stack>
           <Typography variant="body1" textAlign="justify">
@@ -79,8 +83,128 @@ const ReviewItem = ({ review, onRemoved }) => {
   );
 };
 
-const MediaReview = () => {
-  return <div>MediaReview</div>;
+const MediaReview = ({ reviews, media, mediaType }) => {
+  const { user } = useSelector((state) => state.user);
+  const [listReviews, setListReviews] = useState([]);
+  const [filteredReviews, setFilteredReviews] = useState([]);
+  const [page, setPage] = useState(1);
+
+  const [onRequest, setOnRequest] = useState(false);
+  const [content, setContent] = useState("");
+  const [reviewCount, setReviewCount] = useState(0);
+
+  const skip = 4;
+
+  useEffect(() => {
+    setListReviews([...reviews]);
+    setFilteredReviews([...reviews.splice(0, skip)]);
+    setReviewCount(reviews.length);
+  }, [reviews]);
+
+  const onAddReview = async () => {
+    if (onRequest) return;
+    setOnRequest(true);
+
+    const body = {
+      content,
+      mediaId: media.id,
+      mediaType,
+      mediaTitle: media.title || media.name,
+      mediaPoster: media.poster_path,
+    };
+
+    const { response, err } = await reviewApi.add(body);
+
+    setOnRequest(false);
+
+    if (err) toast.error(err.message);
+    if (response) {
+      toast.success("Post review success");
+
+      setFilteredReviews([...filteredReviews, response]);
+      setReviewCount(reviewCount + 1);
+      setContent("");
+    }
+  };
+
+  const onLoadMore = () => {
+    setFilteredReviews([
+      ...filteredReviews,
+      ...[...listReviews].splice(page * skip), //為了提取 listReviews 中的下一批評論。
+    ]);
+    setPage(page + 1);
+  };
+
+  const onRemoved = (id) => {
+    if (listReviews.findIndex((e) => e.id === id) !== -1) {
+      const newListReview = [...listReviews].filter((e) => e.id !== id);
+      setListReviews(newListReview);
+      setFilteredReviews([...newListReview].splice(0, page * skip));
+    } else {
+      setFilteredReviews([...filteredReviews].filter((e) => e.id !== id));
+    }
+
+    setReviewCount(reviewCount - 1);
+    setOnRequest(false);
+
+    toast.success("Remove review success");
+  };
+
+  return (
+    <>
+      <Container header={`Reviews (${reviewCount})`}>
+        <Stack spacing={4} marginBottom={2}>
+          {filteredReviews.map((item) => (
+            <Box key={item.id}>
+              <ReviewItem review={item} onRemoved={onRemoved} />
+              <Divider
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              />
+            </Box>
+          ))}
+          {filteredReviews.length < listReviews.length && (
+            <Button onClick={onLoadMore}>load more</Button>
+          )}
+        </Stack>
+        {user && (
+          <>
+            <Divider />
+            <Stack direction="row" spacing={2}>
+              <TextAvatar text={user.displayname} />
+              <Stack spacing={2} flexGrow={1}>
+                <Typography variant="h6" fontWeight="700">
+                  {user.displayname}
+                </Typography>
+                <TextField
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  multiline
+                  rows={4}
+                  placeholder="Write your Review"
+                  variant="outlined"
+                />
+                <LoadingButton
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    width: "max-content",
+                  }}
+                  startIcon={<SendOutLinedIcon />}
+                  loadingPosition="start"
+                  loading={onRequest}
+                  onClick={onAddReview}
+                >
+                  post
+                </LoadingButton>
+              </Stack>
+            </Stack>
+          </>
+        )}
+      </Container>
+    </>
+  );
 };
 
 export default MediaReview;

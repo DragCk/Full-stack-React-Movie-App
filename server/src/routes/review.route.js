@@ -10,6 +10,8 @@ router.get("/", tokenMiddleware.auth, reviewController.getReviewsOfUser);
 
 router.post(
   "/",
+  tokenMiddleware.auth,
+
   body("mediaId")
     .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。
     .withMessage("mediaId is required")
@@ -35,10 +37,6 @@ router.post(
   body("mediaPoster")
     .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。
     .withMessage("Media Poster is required"),
-
-  body("mediaRate")
-    .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。
-    .withMessage("Media Rate is required"),
 
   requestHandler.validate,
   reviewController.create

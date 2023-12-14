@@ -33,7 +33,7 @@ const MediaVideo = ({ video }) => {
 const MediaVideosSlide = ({ videos }) => {
   return (
     <NavigationSwipper>
-      {videos.slice(0, 5).map((video, index) => (
+      {videos.map((video, index) => (
         <SwiperSlide key={index}>
           <MediaVideo video={video} />
         </SwiperSlide>

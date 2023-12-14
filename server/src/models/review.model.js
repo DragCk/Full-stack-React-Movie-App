@@ -5,7 +5,7 @@ export default mongoose.model(
   "Review",
   mongoose.Schema(
     {
-      username: {
+      user: {
         type: Schema.Types.ObjectId, //用於表示 MongoDB 文檔的 _id 字段
         ref: "User", //表示這個 ObjectId 是對 "User" 模型的引用。
         require: true,
