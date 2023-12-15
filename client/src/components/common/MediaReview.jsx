@@ -30,6 +30,7 @@ const ReviewItem = ({ review, onRemoved }) => {
 
     const { response, err } = await reviewApi.remove({ reviewId: review._id });
 
+    setOnRequest(false);
     if (err) toast.error(err.message);
     if (response) onRemoved(review._id);
   };
@@ -97,7 +98,7 @@ const MediaReview = ({ reviews, media, mediaType }) => {
 
   useEffect(() => {
     setListReviews([...reviews]);
-    setFilteredReviews([...reviews.splice(0, skip)]);
+    setFilteredReviews([...reviews].splice(0, skip));
     setReviewCount(reviews.length);
   }, [reviews]);
 
@@ -145,7 +146,6 @@ const MediaReview = ({ reviews, media, mediaType }) => {
     }
 
     setReviewCount(reviewCount - 1);
-    setOnRequest(false);
 
     toast.success("Remove review success");
   };

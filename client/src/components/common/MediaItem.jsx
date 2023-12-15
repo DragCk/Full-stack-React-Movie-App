@@ -18,31 +18,28 @@ const MediaItem = ({ media, mediaType }) => {
   const [releaseDate, setReleaseDate] = useState(null);
   const [rate, setRate] = useState(null);
 
-  useEffect(
-    () => {
-      setTitle(media.title || media.name || media.mediaTitle);
+  useEffect(() => {
+    setTitle(media.title || media.name || media.mediaTitle);
 
-      setPosterPath(
-        tmdbConfigs.posterPath(
-          media.poster_path ||
-            media.backdrop_path ||
-            media.mediaPoster ||
-            media.profile_path
-        )
+    setPosterPath(
+      tmdbConfigs.posterPath(
+        media.poster_path ||
+          media.backdrop_path ||
+          media.mediaPoster ||
+          media.profile_path
+      )
+    );
+
+    if (mediaType === tmdbConfigs.mediaType.movie) {
+      setReleaseDate(media.release_date && media.release_date.split("-")[0]);
+    } else {
+      setReleaseDate(
+        media.first_air_date && media.first_air_date.split("-")[0]
       );
+    }
 
-      if (mediaType === tmdbConfigs.mediaType.movie) {
-        setReleaseDate(media.release_date && media.release_date.split("-")[0]);
-      } else {
-        setReleaseDate(
-          media.first_air_date && media.first_air_date.split("-")[0]
-        );
-      }
-
-      setRate(media.vote_average || media.mediaRate);
-    },
-    { media, mediaType }
-  );
+    setRate(media.vote_average || media.mediaRate);
+  }, [media, mediaType]);
   return (
     <Link
       to={

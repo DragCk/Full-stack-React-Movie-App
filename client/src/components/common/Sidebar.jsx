@@ -46,7 +46,7 @@ const Sidebar = ({ open, toggleSidebar }) => {
         </Typography>
         {menuConfigs.main.map((item, index) => (
           <ListItemButton
-            ket={index}
+            key={index}
             sx={{
               borderRadius: "10px",
               marginY: 1,

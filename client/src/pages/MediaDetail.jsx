@@ -45,6 +45,7 @@ const MediaDetail = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0); //載入頁面時，將視窗拉到位上面。
     const getMedia = async () => {
       dispatch(setGlobalLoading(true));
       const { response, err } = await mediaApi.getDetail({
@@ -52,6 +53,8 @@ const MediaDetail = () => {
         mediaId,
       });
       dispatch(setGlobalLoading(false));
+
+      console.log(response);
 
       if (response) {
         setMedia(response);
@@ -262,7 +265,6 @@ const MediaDetail = () => {
           </Box>
         </Box>
         {/* Media Content */}
-
         {/* Media Videos */}
         <div ref={videoRef} style={{ paddingTop: "2rem" }}>
           <Container header="Videos">
@@ -270,7 +272,6 @@ const MediaDetail = () => {
           </Container>
         </div>
         {/* Media Videos */}
-
         {/* Media BackDrops */}
         {media.image.backdrops.length > 0 && (
           <Container header="backdrops">
@@ -278,14 +279,12 @@ const MediaDetail = () => {
           </Container>
         )}
         {/* Media BackDrops */}
-
         {/* Media Posters */}
         {media.image.posters.length > 0 && (
           <Container header="Posters">
             <PosterSlide posters={media.image.posters} />
           </Container>
         )}
-
         {/* Media Posters */}
 
         {/* Media Reviews */}
@@ -295,7 +294,6 @@ const MediaDetail = () => {
           mediaType={mediaType}
         />
         {/* Media Reviews */}
-
         {/* Media Recommendation */}
         <Container header="you may also like">
           {media.recommend.results.length > 0 && (

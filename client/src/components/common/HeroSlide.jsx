@@ -84,7 +84,7 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
     >
       <Swiper
         grabCursor={true}
-        loop={true}
+        loop={movies.length > 0 ? true : false}
         //modules={[Autoplay]}
         style={{ width: "100%", height: "max-content" }}
         // autoplay={{
