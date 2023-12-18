@@ -49,7 +49,7 @@ const getFavoritesOfUser = async (req, res) => {
     const favorite = await favoriteModel
       .find({ user: req.user.id })
       .sort("-createdAt");
-    console.log(`server getFavorite  ${favorite}`);
+
     responseHandler.ok(res, favorite);
   } catch {
     responseHandler.error(res);

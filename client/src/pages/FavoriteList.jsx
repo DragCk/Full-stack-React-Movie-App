@@ -19,15 +19,17 @@ const FavoriteItem = ({ media, onRemoved }) => {
   const onRemove = async () => {
     if (onRequest) return;
     setOnRequest(true);
+
     const { response, err } = await favoriteApi.remove({
-      favoriteId: media.id,
+      favoriteId: media.mediaId,
     });
     setOnRequest(false);
 
     if (err) toast.error(err.message);
     if (response) {
+      toast.success("Remove favorite success");
       dispatch(removeFavorite({ mediaId: media.mediaId }));
-      onRemoved(media.id);
+      onRemoved(media.mediaId);
     }
   };
 
@@ -105,6 +107,9 @@ const FavoriteList = () => {
             </Grid>
           ))}
         </Grid>
+        {filteredMedias.length < medias.length && (
+          <Button onClick={onLoadMore}>Load More</Button>
+        )}
       </Container>
     </Box>
   );
