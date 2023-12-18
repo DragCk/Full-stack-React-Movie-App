@@ -91,11 +91,7 @@ const MediaList = () => {
           justifyContent="space-between"
           sx={{ marginBottom: 4 }}
         >
-          <Typography
-            fontWeight="700"
-            variant="h5"
-            sx={{ paddingLeft: { md: 2 } }}
-          >
+          <Typography fontWeight="700" variant="h5">
             {mediaType === tmdbConfigs.mediaType.movie ? "Movie" : "TV Series"}
           </Typography>
           <Stack direction="row" spacing={2}>

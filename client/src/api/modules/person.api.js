@@ -1,7 +1,7 @@
 import publicClient from "../client/public.client.js";
 
 const personEndpoints = {
-  detail: ({ personId }) => `person/${personId}`,
+  detail: ({ personId }) => `person/${personId}/detail`,
   medias: ({ personId }) => `person/${personId}/medias`,
 };
 
@@ -29,3 +29,5 @@ const personApi = {
     }
   },
 };
+
+export default personApi;

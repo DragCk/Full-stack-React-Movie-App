@@ -40,11 +40,12 @@ const MediaItem = ({ media, mediaType }) => {
 
     setRate(media.vote_average || media.mediaRate);
   }, [media, mediaType]);
+
   return (
     <Link
       to={
         mediaType !== "people"
-          ? routesGen.mediaDetail(mediaType, media.id || media.mediaid)
+          ? routesGen.mediaDetail(mediaType, media.mediaId || media.id)
           : routesGen.person(media.id)
       }
     >
@@ -60,7 +61,10 @@ const MediaItem = ({ media, mediaType }) => {
         {/* Movie or Tv item*/}
         {mediaType !== "people" && (
           <>
-            {favoriteUtils.check({ listFavorites, mediaId: media.id }) && (
+            {favoriteUtils.check({
+              listFavorites,
+              mediaId: media.id || media.mediaId,
+            }) && (
               <FavoriteIcon
                 color="primary"
                 sx={{

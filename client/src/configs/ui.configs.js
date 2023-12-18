@@ -34,7 +34,7 @@ const uiConfigs = {
     mainContent: {
       maxWidth: "1366px",
       margin: "auto",
-      passing: 2,
+      padding: 2,
     },
     //接受一個圖片路徑，返回一個包含背景圖片樣式的物件。
     backgroundImage: (imgPath) => ({

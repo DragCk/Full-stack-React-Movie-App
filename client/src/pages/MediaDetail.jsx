@@ -54,8 +54,6 @@ const MediaDetail = () => {
       });
       dispatch(setGlobalLoading(false));
 
-      console.log(response);
-
       if (response) {
         setMedia(response);
         setIsFavorite(response.isFavorite);
@@ -173,7 +171,6 @@ const MediaDetail = () => {
               sx={{
                 width: { xs: "100%", md: "60%" },
                 color: "text.primary",
-                padding: { xs: "0.8rem", md: 0 },
               }}
             >
               <Stack spacing={5}>
