@@ -136,11 +136,11 @@ const MediaReview = ({ reviews, media, mediaType }) => {
 
   const onRemoved = (id) => {
     if (listReviews.findIndex((e) => e.id === id) !== -1) {
-      const newListReview = [...listReviews].filter((e) => e.id !== id);
+      const newListReview = [...listReviews].filter((e) => e._id !== id);
       setListReviews(newListReview);
       setFilteredReviews([...newListReview].splice(0, page * skip));
     } else {
-      setFilteredReviews([...filteredReviews].filter((e) => e.id !== id));
+      setFilteredReviews([...filteredReviews].filter((e) => e._id !== id));
     }
 
     setReviewCount(reviewCount - 1);
