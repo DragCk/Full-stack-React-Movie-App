@@ -78,11 +78,11 @@ router.put(
 
   body("confirmNewPassword")
     .exists() //表示確保請求中的參數存在（不為 undefined 或 null）。
-    .withMessage("Confirm new password is required")
+    .withMessage("Confirm new password is  required")
     .isLength({ min: 8 })
     .withMessage("Confirm new password minimum 8 characters")
     .custom((value, { req }) => {
-      if (value === req.body.newPassword)
+      if (value !== req.body.newPassword)
         throw new Error("Confirm new password not match");
       return true;
     }),

@@ -80,7 +80,7 @@ const FavoriteList = () => {
     };
 
     getFavorites();
-  }, []);
+  }, [dispatch]);
 
   const onLoadMore = () => {
     setFilteredMedias([
@@ -91,7 +91,7 @@ const FavoriteList = () => {
   };
 
   const onRemoved = (id) => {
-    const newMedias = [...medias].filter((e) => e.id !== id);
+    const newMedias = [...medias].filter((e) => e.mediaId !== id);
     setMedias(newMedias);
     setFilteredMedias([...newMedias].splice(0, page * skip));
     setCount(count - 1);

@@ -89,6 +89,7 @@ const updatePassword = async (req, res) => {
   try {
     const { password, newPassword } = req.body;
 
+    console.log(`${password} and ${newPassword}`);
     const user = await userModel
       .findById(req.user.id)
       .select("password id salt");

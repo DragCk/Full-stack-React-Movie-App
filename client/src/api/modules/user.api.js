@@ -45,12 +45,12 @@ const userApi = {
       return { err };
     }
   },
-  passwordUpdate: async ({ password, newPassword, confirmPassword }) => {
+  passwordUpdate: async ({ password, newPassword, confirmNewPassword }) => {
     try {
-      const response = await privateClient.put(userEndpoints.singup, {
+      const response = await privateClient.put(userEndpoints.passwordUpdate, {
         password,
         newPassword,
-        confirmPassword,
+        confirmNewPassword,
       });
 
       return { response };

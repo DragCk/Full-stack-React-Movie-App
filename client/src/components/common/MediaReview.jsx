@@ -26,8 +26,6 @@ const ReviewItem = ({ review, onRemoved }) => {
     if (onRequest) return;
     setOnRequest(true);
 
-    console.log({ review });
-
     const { response, err } = await reviewApi.remove({ reviewId: review._id });
 
     setOnRequest(false);
@@ -155,7 +153,7 @@ const MediaReview = ({ reviews, media, mediaType }) => {
       <Container header={`Reviews (${reviewCount})`}>
         <Stack spacing={4} marginBottom={2}>
           {filteredReviews.map((item) => (
-            <Box key={item.id}>
+            <Box key={item._id}>
               <ReviewItem review={item} onRemoved={onRemoved} />
               <Divider
                 sx={{
