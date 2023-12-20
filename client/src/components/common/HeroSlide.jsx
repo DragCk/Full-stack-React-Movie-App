@@ -198,7 +198,7 @@ const HeroSlide = ({ mediaType, mediaCategory }) => {
                       width: "max-content",
                     }}
                   >
-                    Watch Now
+                    See more
                   </Button>
                   {/* Buttons */}
                 </Stack>
