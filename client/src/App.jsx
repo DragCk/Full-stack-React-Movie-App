@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./components/Layout/MainLayout";
 import routes from "./routes/routes";
 import PageWrapper from "./components/common/PageWrapper";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import "react-toastify/dist/ReactToastify.css";
 import "swiper/css";
@@ -72,6 +73,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
       {/* App Routes */}
+      <SpeedInsights />
     </ThemeProvider>
   );
 };
