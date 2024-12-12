@@ -11,5 +11,8 @@
     "mongoose": "^8.0.2",
     "node": "^21.2.0",
     "nodemon": "^3.0.2"
+  },
+  "overrides": {
+    "whatwg-url": "^14.0.0"
   }
 }
