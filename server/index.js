@@ -8,14 +8,7 @@ import routes from "./src/routes/index.js";
 
 const app = express();
 
-const corsConfig = {
-  origin: "",
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-};
-app.use(cors(corsConfig));
-app.options("", cors(corsConfig));
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
