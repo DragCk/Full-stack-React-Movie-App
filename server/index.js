@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [""],
+    origin: ["https://full-stack-react-movie-app.vercel.app/"],
     methods: ["POST", "GET"],
     credentials: true,
   })
