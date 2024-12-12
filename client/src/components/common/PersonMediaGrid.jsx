@@ -1,5 +1,5 @@
 import { Button, Grid } from "@mui/material";
-import { useDebugValue, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import tmdbConfigs from "../../api/configs/tmdb.configs";
 import personApi from "../../api/modules/person.api";
 import MediaItem from "./MediaItem";
