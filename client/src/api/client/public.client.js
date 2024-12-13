@@ -1,8 +1,8 @@
 import axios from "axios";
 import queryString from "query-string";
 
-const baseURL = "http://127.0.0.1:5000/api/v1/";
-//const baseURL = "https://full-stack-react-movie-app-r2vr.vercel.app/api/v1/";
+//const baseURL = "http://127.0.0.1:5000/api/v1/";
+const baseURL = "https://full-stack-react-movie-app-r2vr.vercel.app/api/v1/";
 
 const publicClient = axios.create({
   baseURL,
